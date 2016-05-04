@@ -18,7 +18,7 @@ Apache/2.4.18 (Win32) PHP/5.6.20  Mysql 5.5.47
 
 2. 将comic_ci.sql 导入 comic_ci
 
-3. 打开 源码文件目录application\config\database.php 
+3. 打开 源码文件目录application/config/database.php 
 
 修改数据库配置信息
 
@@ -28,7 +28,7 @@ Apache/2.4.18 (Win32) PHP/5.6.20  Mysql 5.5.47
 
 'password' => 'root',	//修改为你的数据库登陆密码
 
-4. 打开 源码文件目录application\config\config.php 
+4. 打开 源码文件目录application/config/config.php 
  
 $config['base_url'] = 'http://localhost/comic_ci/';	//修改为你的站点的 url
 
