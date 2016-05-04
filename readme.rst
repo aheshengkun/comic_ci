@@ -8,7 +8,7 @@
 我的开发环境
 *******************
 
-Apache/2.4.18 (Win32) PHP/5.6.20
+Apache/2.4.18 (Win32) PHP/5.6.20  Mysql 5.5.47
 
 ###################
 安装说明
@@ -21,6 +21,7 @@ Apache/2.4.18 (Win32) PHP/5.6.20
 3. 打开 源码文件目录application\config\database.php 
 
 修改数据库配置信息
+
 'hostname' => 'mysql:host=localhost;dbname=comic_ci',	//修改为你的数据库地址
 
 'username' => 'root',	//修改为你的数据库登陆用户名
