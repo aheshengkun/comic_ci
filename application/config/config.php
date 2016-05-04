@@ -25,6 +25,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $config['base_url'] = 'http://localhost/comic_ci/';
 
+$config['comic_base_url'] = 'http://localhost/comic_ci/uploads/comics/';
+$config['comic_base_dir'] = 'D:/soft design/WWW/comic_ci/uploads/comics/';
+$config['upload_base_url'] = 'http://localhost/comic_ci/uploads/tmps/';
+$config['upload_base_dir'] = 'D:/soft design/WWW/comic_ci/uploads/tmps/';
 /*
 |--------------------------------------------------------------------------
 | Index File

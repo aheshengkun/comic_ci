@@ -30,9 +30,10 @@ class Upload extends CI_Controller {
     }
 	public function doUpload()
 	{
-		$config['upload_path']          = './uploads/tmps';
+		$config['upload_path']          = $this->config->item('upload_base_dir');
 		$config['allowed_types']        = 'gif|jpg|png';
-		$config['max_size']             = 2048;
+		$uploadsize = ini_get('upload_max_filesize');
+		$config['max_size']             = $uploadsize*1024;
 
 		$this->load->library('upload', $config);
 		$fileurl = "";
@@ -47,7 +48,7 @@ class Upload extends CI_Controller {
 			$msg = "success";
 			$data = $this->upload->data();
 			$file_name = $data['file_name'];
-			$fileurl = base_url().'uploads/tmps/'.$file_name;
+			$fileurl = $this->config->item('upload_base_url').$file_name;
 			$file_path = $data['file_path'];
 		}
 		$data = array('errMsg'=>$msg, 'fileurl'=>$fileurl, 'file_name'=>$file_name, 'file_path'=>$file_path);

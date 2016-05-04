@@ -3,36 +3,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 <dl class="row margin">
 	<dt>
-		<button id="create" class="blue" onclick="back()">杩斿洖</button>
+		<button id="create" class="blue" onclick="back()">返回</button>
 	</dt>
 	<dd class="right">	
 	</dd>
 </dl>
  <div class="panel">
-	<div class="header">缂栬緫婕敾</div>
+	<div class="header">编辑漫画</div>
 	<div class="body">
 		<form method="POST" id="form" action="#">
 			<table class="form">
 				<tr>
-					<th><span class="red">*</span> 婕敾鍚嶇О</th>
+					<th><span class="red">*</span> 漫画名称</th>
 					<td><input type="text" name="name" id="name" disabled="disabled" value="<?php echo $comic->name ?>" /></td>
 				</tr> 
 				<tr>
 					<th>&nbsp</th>
-					<td>娉ㄦ剰锛氭极鐢诲悕涓嶈兘鍖呭惈涓嬪垝绾�</td>
+					<td>注意：漫画名不能包含下划线?</td>
 				</tr>
 				<tr>
-					<th><span class="red">*</span> 婕敾浣滆��</th>
+					<th><span class="red">*</span> 漫画作者</th>
 					<td><input type="text" name="author" id="author" value="<?php echo $comic->author ?>" /></td>
 				</tr>
 				<tr>
-					<th><span class="red">*</span> 婕敾涓婃槧鏃ユ湡</th>
+					<th><span class="red">*</span> 漫画上映日期</th>
 					<td><input type="text" name="showdate" id="showdate" value="<?php echo $comic->showdate ?>" /></td>
 				</tr>
 				<tr>
-					<th><span class="red">*</span> 婕敾灏侀潰鍥剧墖</th>
+					<th><span class="red">*</span> 漫画封面图片</th>
 					<td><input type="file" id="uploadfile" name="userfile" />
-						<button type="button" onclick="ajaxFileUpload()"  class="blue big">涓婁紶鏂囦欢</button>
+						<button type="button" onclick="ajaxFileUpload()"  class="blue big">上传文件</button>
 					</td>
 				</tr>
 				<tr>
@@ -44,15 +44,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><img id="uplaodImg" src="<?php echo $comic->coverurl ?>" style="max-width:200px; max-height:200px"></td>
 				</tr>
 				<tr>
-					<th><span class="red">*</span> 婕敾鎻忚堪</th>
+					<th><span class="red">*</span> 漫画描述</th>
 					<td><textarea name="description" id="description" rows="8" style="width: 800px; height: 200px;"><?php echo $comic->description ?></textarea></td>
 				</tr>
 				<tr>
-					<th><span class="red">*</span>鎼滅储鍏抽敭璇�</th>
+					<th><span class="red">*</span>搜索关键词</th>
 					<td><textarea name="searchWord" id="searchWord" rows="8" style="width: 800px; height: 100px;"><?php echo $comic->searchword ?></textarea></td>
 				</tr>
 				<tr>
-					<th><span class="red">*</span> 婕敾绫诲瀷</th>
+					<th><span class="red">*</span> 漫画类型</th>
 					<td>
 						<?php 
 						$n=1;
@@ -63,7 +63,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							$checked = "";
 							foreach($types as $v)
 							{
-								if($_type->type == $v->typename)
+								if($_type->type == $v)
 								{
 									$checked = 'checked="checked"';
 									break;
@@ -79,7 +79,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</tr>
 				<tr>
 					<th>&nbsp;</th>
-					<td><button type="button" id="submit" onclick="submitForm()"  class="blue big">纭畾</button></td>
+					<td><button type="button" id="submit" onclick="submitForm()"  class="blue big">确定</button></td>
 				</tr>
 				<tr>
 					<th>&nbsp;</th>
@@ -127,41 +127,41 @@ function submitForm()
 	var name = mytrim(document.getElementById('name').value);
 	if(name == "")
 	{
-		alert("婕敾鍚嶄笉鑳戒负绌�");
+		alert("漫画名不能为空");
 		return ;
 	}
 	if(name.indexOf('_') != -1)
 	{
-		alert("婕敾鍚嶄笉鑳藉寘鍚笅鍒掔嚎");
+		alert("漫画名不能包含下划线");
 		return ;
 	}
 	var author = mytrim(document.getElementById('author').value);
 	if(author == "")
 	{
-		alert("婕敾浣滆�呬笉鑳界┖");
+		alert("漫画作者不能空");
 		return ;
 	}
 	if(covername == "")
 	{
-		alert("婕敾灏侀潰涓嶈兘涓虹┖");
+		alert("漫画封面不能为空");
 		return ;
 	}
 	var description = mytrim(document.getElementById('description').value);
 	if(description == "")
 	{
-		alert("婕敾鎻忚堪涓嶈兘绌�");
+		alert("漫画描述不能空");
 		return ;
 	}
 	var showdate = mytrim(document.getElementById('showdate').value);
 	if(showdate == "")
 	{
-		alert("婕敾涓婃槧鏃ユ湡涓嶈兘绌�");
+		alert("漫画上映日期不能空");
 		return ;
 	}
 	var searchWord = mytrim(document.getElementById('searchWord').value);
 	if(searchWord == "")
 	{
-		alert("鎼滅储鍏抽敭瀛椾笉鑳戒负绌�");
+		alert("搜索关键字不能为空");
 		return ;
 	}
 	var comicType = getCheckbox();
@@ -183,7 +183,7 @@ function submitForm()
 		success:function(data) { 
 			var msg = data.errMsg;
 			if(msg === "success"){
-				$('#showmsg').html("鏇存柊婕敾鎴愬姛");
+				$('#showmsg').html("更新漫画成功");
 				window.location.reload();
 			}else{
 				$('#showmsg').html(msg);
@@ -200,7 +200,7 @@ function ajaxFileUpload()
 	}
 	isRun = true;
 	$('#uplaodImg').attr("src","<?php echo (base_url()."assets/resources")?>/imgs/loading.gif");
-	$('#fileUploadProcess').html("姝ｅ湪涓婁紶鏂囦欢...");
+	$('#fileUploadProcess').html("正在上传文件...");
 	$.ajaxFileUpload
 	({
 		url:'<?php echo (base_url()."index.php/")?>admin/upload',
@@ -213,7 +213,7 @@ function ajaxFileUpload()
 			var msg = data.errMsg;
 			if(msg=="success")
 			{
-				msg = "涓婁紶鏂囦欢鎴愬姛";
+				msg = "上传文件成功";
 			}
 			$('#fileUploadProcess').html(msg);
 			var imgurl = data.fileurl;
@@ -224,7 +224,7 @@ function ajaxFileUpload()
 		},
 		error: function (data, status, e)
 		{
-			$('#fileUploadProcess').html("缃戠粶寮傚父,涓婁紶澶辫触");
+			$('#fileUploadProcess').html("网络异常,上传失败");
 			$('#uplaodImg').attr("src","");
 			isRun = false;
 		}

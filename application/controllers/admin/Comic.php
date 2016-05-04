@@ -18,6 +18,7 @@ class Comic extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+	 
 	public function __construct()
     {
           parent::__construct();
@@ -71,11 +72,9 @@ class Comic extends CI_Controller {
 	
 	private function dirUrl($name, $covername, &$coverurl, &$coverdir)
 	{
-		$array = array('1' => 1);
-		$row = $this->ComicDir_Model->query($array);
-		$tmp =  $row[0]->comicdir;
+		$comic_base_dir =  $this->config->item('comic_base_dir');
 		$endcod_name = $this->wordcodeclass->unicode_encode($name);	//生成将名字加密为MD5
-		$dir = $tmp.$endcod_name."/";	//生成保存漫画文件路径
+		$dir = $comic_base_dir.$endcod_name."/";	//生成保存漫画文件路径
 		if(!file_exists($dir))
 		{
 			mkdir($dir);
@@ -87,8 +86,8 @@ class Comic extends CI_Controller {
 			copy($srcFile, $desFile);	//将上传成功的图片 复制到 漫画文件路径下
 			unlink($srcFile);
 		}
-		$coverurl = $this->config->item('base_url')."uploads/comics/".$endcod_name."/".$covername;
-		$coverdir = $dir;
+		$coverurl = $endcod_name."/".$covername;
+		$coverdir = $endcod_name."/";
 	}
 	
 	private function updateCoverPic($srcFile, $desFile, $delFile)
@@ -150,38 +149,15 @@ class Comic extends CI_Controller {
 					$this->Comic_Model->coverurl = $coverurl;
 					$this->Comic_Model->coverdir = $coverdir;
 					$this->Comic_Model->author = $author;
-					
-					$comictype = trim($this->input->post('comictype'));
+					$this->Comic_Model->types = trim($this->input->post('comictype'));
 					//$this->db->trans_begin();
 					if($this->Comic_Model->insert())
 					{
-						if($comictype !== "")
-						{
-							$array_type = explode('|', $comictype);
-							for($i=0 ; $i<count($array_type); $i++)
-							{
-								$this->ComicTypes_Model->comicname = $name;
-								$this->ComicTypes_Model->typename  = $array_type[$i];
-								$this->ComicTypes_Model->cmp = $name.$array_type[$i];
-								$this->ComicTypes_Model->insert();
-							}
-						}
 						$msg = "success";
 					}
 					else{
 						$msg = "输入数据有误创建失败";
 					}
-					/*
-					if ($this->db->trans_status() === FALSE)
-					{
-						$this->db->trans_rollback();
-						$msg = "数据有误创建失败";
-					}
-					else
-					{
-						$this->db->trans_commit();
-						$msg = "success";
-					}*/
 				}
 				else
 				{
@@ -240,18 +216,16 @@ class Comic extends CI_Controller {
 					$covernameTmp = $row[0]->covername;
 					$coverurl = $row[0]->coverurl;
 					//如果上传过图片就更新漫画封面
-					if($coverdirTmp != $coverdir)
+					if($covernameTmp != $covername)
 					{
 						$endcod_name = $this->wordcodeclass->unicode_encode($name);	//生成将名字加密为MD5
-						$array = array('1' => 1);
-						$row = $this->ComicDir_Model->query($array);
-						$coverdir =  $row[0]->comicdir.$endcod_name."/";
+						$coverdir = $endcod_name."/";
 						$scrFile = $coverdirTmp.$covername;
-						$desFile = $coverdir.$covername;
-						$delFile = $coverdir.$covernameTmp;
+						$desFile = $this->config->item('comic_base_dir').$coverdir.$covername;
+						$delFile = $this->config->item('comic_base_dir').$coverdir.$covernameTmp;
 						$this->updateCoverPic($scrFile, $desFile, $delFile);
 						
-						$coverurl = $this->config->item('base_url')."uploads/comics/".$endcod_name."/".$covername;
+						$coverurl = $endcod_name."/".$covername;
 					}
 					$this->load->model('admin/ComicTypes_Model', 'ComicTypes_Model');
 					$this->Comic_Model->description = $description;
@@ -261,36 +235,9 @@ class Comic extends CI_Controller {
 					$this->Comic_Model->coverurl = $coverurl;
 					$this->Comic_Model->coverdir = $coverdir;
 					$this->Comic_Model->author = $author;
-					$comictype = trim($this->input->post('comictype'));
-					//$this->db->trans_begin();
+					$this->Comic_Model->types = trim($this->input->post('comictype'));
 					$this->Comic_Model->update($array);
-					if($comictype !== "")
-					{
-						$array = array(
-							'comicname'  => $name
-						);
-						$this->ComicTypes_Model->delete($array);
-						$array_type = explode('|', $comictype);
-						for($i=0 ; $i<count($array_type); $i++)
-						{
-							$this->ComicTypes_Model->comicname = $name;
-							$this->ComicTypes_Model->typename  = $array_type[$i];
-							$this->ComicTypes_Model->cmp = $name.$array_type[$i];
-							$this->ComicTypes_Model->insert();
-						}
-					}
 					$msg = "success";
-					/*
-					if ($this->db->trans_status() === FALSE)
-					{
-						$this->db->trans_rollback();
-						$msg = "数据有误创建失败";
-					}
-					else
-					{
-						$this->db->trans_commit();
-						$msg = "success";
-					}*/
 				}
 				else
 				{
@@ -317,13 +264,14 @@ class Comic extends CI_Controller {
 			$dataSql = array(
 						'comicname'  => $comicname
 					);
-			$rows = $this->ComicTypes_Model->query($dataSql);
-			$info['types'] =  $rows;
+			
 			$dataSql = array(
 						'name'  => $comicname
 					);
 			$rows = $this->Comic_Model->query($dataSql);
+			$rows[0]->coverurl = $this->config->item('comic_base_url').$rows[0]->coverurl;
 			$info['comic'] =  $rows[0];
+			$info['types'] =  explode("|", $rows[0]->types);
 			$this->load->view('admin/header');
 			$this->load->view('admin/comic_edit', $info);		
 		}

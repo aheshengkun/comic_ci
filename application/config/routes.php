@@ -69,6 +69,9 @@ $route['admin/createcomicnum'] = 'admin/ComicNum/createComicNum';
 $route['admin/comicnumlist'] = 'admin/ComicNum/showComicNumList';
 $route['admin/sortcomicnum'] = 'admin/ComicNum/sortComicNum';
 
+$route['admin/comicpage'] = 'admin/ComicPage/showComicPage';
+$route['admin/comicpageupload'] = 'admin/ComicPage/doUpload';
+$route['admin/createcomicpage'] = 'admin/ComicPage/createComicPage';
 
 $route['admin/comicdir'] = 'admin/ComicDir/showComicDir';
 $route['admin/editcomicdir'] = 'admin/ComicDir/eidtComicDir';
@@ -79,6 +82,7 @@ $route['admin/comictypecreate'] = 'admin/ComicType/createType';
 $route['admin/comictypedelete'] = 'admin/ComicType/deleteType';
 $route['admin/sortcomictype'] = 'admin/ComicType/sortComicType';
 
+$route['page'] = 'Page/ShowPage';
 
 $route['loginback'] = 'admin/User/showLogin';
 $route['admin/loginout'] = 'admin/User/loginOut';

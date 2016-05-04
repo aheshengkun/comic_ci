@@ -28,6 +28,7 @@ class ComicNum extends CI_Controller {
 			$this->load->helper('url');
 			$this->load->library('PaginationExClass');
 			$this->load->library('form_validation');
+			$this->load->library('WordCodeClass');
 			$this->load->model('admin/ComicNum_Model', 'ComicNum_Model');
           }
     }
@@ -157,8 +158,14 @@ class ComicNum extends CI_Controller {
 					$this->ComicNum_Model->numname = $numname;
 					$this->ComicNum_Model->dirname = $dirname;
 					$this->ComicNum_Model->sort_id = $sort_id;
-					$this->ComicNum_Model->cmp = $comicname.$numname;
+					$this->ComicNum_Model->cmp = $comicname."_".$dirname;
 					$this->ComicNum_Model->insert();
+					$endcod_name = $this->wordcodeclass->unicode_encode($comicname);	//生成将名字加密为MD5	
+					$path = $this->config->item('comic_base_dir').$endcod_name."/".$dirname."/";
+					if(!file_exists($path))
+					{
+						mkdir($path,0777,true);
+					}
 					$msg = "success";
 				}
 				else
@@ -206,7 +213,6 @@ class ComicNum extends CI_Controller {
 				$this->ComicNum_Model->numname = $numname;
 				$this->ComicNum_Model->dirname = $dirname;
 				$this->ComicNum_Model->sort_id = $sort_id;
-				$this->ComicNum_Model->cmp = $comicname.$numname;
 				$array = array(
 					'id'  => $numid,
 					);

@@ -12,6 +12,7 @@ class Comic_Model extends CI_Model {
 		public $coverurl;
 		public $created_at;
 		public $updated_at;
+		public $types;
 		
         public function __construct()
         {
@@ -38,6 +39,7 @@ class Comic_Model extends CI_Model {
 				'coverurl' => $this->coverurl,
 				'coverdir' => $this->coverdir,
 				'author' => $this->author,
+				'types' => $this->types,
 				'created_at' => $this->created_at,
 				'updated_at' => $this->updated_at
 			);
@@ -54,6 +56,7 @@ class Comic_Model extends CI_Model {
 				'coverurl' => $this->coverurl,
 				'coverdir' => $this->coverdir,
 				'author' => $this->author,
+				'types' => $this->types,
 				'updated_at' => $this->updated_at
 			);
 			return $data;

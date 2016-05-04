@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<td><?php echo $_comicnum->dirname; ?></td>
 				<td>
 				<a href="<?php echo base_url()."index.php/admin/editcomicnum?numid=".$_comicnum->id ?>">编辑</a>
-				|<a href="<?php echo base_url()."index.php/admin/comicpagelist?numid=".$_comicnum->id ?>">页数管理</a>
+				|<a href="<?php echo base_url()."index.php/admin/comicpage?numid=".$_comicnum->id ?>">页数管理</a>
 				</td>
 			</tr>
 		<?php } ?>

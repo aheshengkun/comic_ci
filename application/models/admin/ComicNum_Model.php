@@ -43,9 +43,7 @@ class ComicNum_Model extends CI_Model {
 		{
 			$data = array(
 				'numname' => $this->numname,
-				'dirname' => $this->dirname,
 				'sort_id' => $this->sort_id,
-				'cmp' => $this->cmp,
 				'updated_at' => $this->updated_at
 			);
 			return $data;
