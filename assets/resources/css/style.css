@@ -345,6 +345,7 @@ table.tlist {
 table.tlist > tbody > tr > th, table.tlist > tr > th, table.tlist > thead > tr > th, table.tlist > tbody > tr > td, table.tlist > tr > td {
 	border: 0px;
 	border-top: 1px solid #E3E3E3;
+	text-align:left;
 }
 table.tborder {
 	border-collapse: separate;

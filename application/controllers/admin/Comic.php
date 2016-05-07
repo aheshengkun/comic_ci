@@ -115,6 +115,7 @@ class Comic extends CI_Controller {
 			$this->form_validation->set_rules('searchword','searchword','trim|required|min_length[1]|max_length[500]');
 			$this->form_validation->set_rules('description','description','trim|required|min_length[1]|max_length[2000]');
 			$this->form_validation->set_rules('covername','covername','trim|required|min_length[1]|max_length[45]');
+			$this->form_validation->set_rules('status','status','trim|required|min_length[1]|max_length[45]');
 			$this->form_validation->set_rules('coverdir','coverdir','trim|required|min_length[1]|max_length[200]');
 			if ($this->form_validation->run() == FALSE)
 			{
@@ -150,6 +151,7 @@ class Comic extends CI_Controller {
 					$this->Comic_Model->coverdir = $coverdir;
 					$this->Comic_Model->author = $author;
 					$this->Comic_Model->types = trim($this->input->post('comictype'));
+					$this->Comic_Model->status = $this->input->post('status');
 					//$this->db->trans_begin();
 					if($this->Comic_Model->insert())
 					{
@@ -190,6 +192,7 @@ class Comic extends CI_Controller {
 			$this->form_validation->set_rules('searchword','searchword','trim|required|min_length[1]|max_length[500]');
 			$this->form_validation->set_rules('description','description','trim|required|min_length[1]|max_length[2000]');
 			$this->form_validation->set_rules('covername','covername','trim|required|min_length[1]|max_length[45]');
+			$this->form_validation->set_rules('status','status','trim|required|min_length[1]|max_length[45]');
 			$this->form_validation->set_rules('coverdir','coverdir','trim|required|min_length[1]|max_length[200]');
 			if ($this->form_validation->run() == FALSE)
 			{
@@ -236,6 +239,7 @@ class Comic extends CI_Controller {
 					$this->Comic_Model->coverdir = $coverdir;
 					$this->Comic_Model->author = $author;
 					$this->Comic_Model->types = trim($this->input->post('comictype'));
+					$this->Comic_Model->status = $this->input->post('status');
 					$this->Comic_Model->update($array);
 					$msg = "success";
 				}

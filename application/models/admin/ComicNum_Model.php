@@ -102,6 +102,13 @@ class ComicNum_Model extends CI_Model {
 			return $row->count;
 		}
 		
+		public function queryEx()
+		{
+			$query = $this->db->get($this->tableName);
+			$row = $query->result();
+			return $row;
+		}
+		
 		public function query_where_limit_orderby($sqldata, $num, $index, $strsql)
 		{
 			$this->db->where($sqldata);

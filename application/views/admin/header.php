@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <body>
 <ul class="row" id="admin_header" style="background: #000000; line-height: 36px;">
 	<li style="width: 100px;">
-		<a href="#"><img style="margin-top: 4px;" height="26" align="top"></a>
+		<!--<a href="#"><img style="margin-top: 4px;" height="26" align="top"></a>-->
 	</li>
 	<li id="admin_link">
 		<a href="index" style="color:red;">后台</a>
@@ -31,7 +31,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<div>
 				<h3>设置</h3>
 					<a href="<?php echo (base_url()."index.php/admin/") ?>index">基本信息</a>
-					<a href="<?php echo (base_url()."index.php/admin/") ?>comicdir">漫画路径</a>
+					<!--<a href="<?php echo (base_url()."index.php/admin/") ?>comicdir">漫画路径</a>-->
 			</div>
 			<div>
 				<h3>后台用户</h3>

@@ -260,7 +260,7 @@ class ComicPage extends CI_Controller {
 		$content = $content.$data;
 		$data = '<div class="header_001">'."\x0d\x0a";
 		$content = $content.$data;
-		$data = '<div class="header_001_1"><a href="'.$base_url.'index.php">首页</a>><a href="#">'.$array['comicname'].'</a>>'.$array['numname'].'</div>'."\x0d\x0a";
+		$data = '<div class="header_001_1"><a href="'.$base_url.'index.php">首页</a>><a href="'.$base_url.'?comicname='.$array['comicname'].'">'.$array['comicname'].'</a>>'.$array['numname'].'</div>'."\x0d\x0a";
 		$content = $content.$data;
 		$data = '</div>'."\x0d\x0a";
 		$content = $content.$data;

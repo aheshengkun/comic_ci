@@ -45,6 +45,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<td><textarea name="searchWord" id="searchWord" rows="8" style="width: 800px; height: 100px;"></textarea></td>
 				</tr>
 				<tr>
+					<th><span class="red">*</span>状态</th>
+					<td><select><option>连载中</option><option>已完结</option></select></td>
+				</tr>
+				<tr>
 					<th><span class="red">*</span> 漫画类型</th>
 					<td>
 						<?php 
@@ -155,6 +159,7 @@ function submitForm()
 		'showdate':showdate, 
 		'covername':covername, 
 		'coverdir':coverdir, 
+		'status':$("#status").val(),
 		'comictype':comicType 
 	};
 	$.ajax( {

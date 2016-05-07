@@ -32,9 +32,23 @@ body{
 	padding-top:5px;
 }
 
+#pagelist {
+	width:600px; margin:30px auto; padding:6px 0px; height:32px;
+}
+#pagelist ul { list-style:none;}
+#pagelist ul li {  float:left; border:1px solid #5d9cdf; height:32px; line-height:30px; margin:0px 2px;}
+#pagelist ul li a, .pageinfo { 
+	display:block; padding:0px 12px; color:#000;
+}
+.current { 
+	background: #46a1e1;
+    color:#fff;
+    padding:0px 12px;
+	display:block;
+}
+/*
 #pagelist {width:600px; margin:30px auto; padding:6px 0px; height:22px;}
 #pagelist ul { list-style:none;}
 #pagelist ul li { float:left; border:1px solid #5d9cdf; height:22px; line-height:20px; margin:0px 2px;}
-#pagelist ul li a, 
-.pageinfo { display:block; padding:0px 6px; background:#e6f2fe; color:#555;}
-.current { background:#a9d2ff; display:block; padding:0px 6px; font-weight:bold;}
+#pagelist ul li a , .pageinfo { display:block; padding:0px 6px; background:#e6f2fe; color:#555;}
+.current { background:#a9d2ff; display:block; padding:0px 6px; font-weight:bold;}*/

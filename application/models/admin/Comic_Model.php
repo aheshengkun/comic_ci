@@ -13,6 +13,7 @@ class Comic_Model extends CI_Model {
 		public $created_at;
 		public $updated_at;
 		public $types;
+		public $status;
 		
         public function __construct()
         {
@@ -40,6 +41,7 @@ class Comic_Model extends CI_Model {
 				'coverdir' => $this->coverdir,
 				'author' => $this->author,
 				'types' => $this->types,
+				'status' => $this->status,
 				'created_at' => $this->created_at,
 				'updated_at' => $this->updated_at
 			);
@@ -57,8 +59,51 @@ class Comic_Model extends CI_Model {
 				'coverdir' => $this->coverdir,
 				'author' => $this->author,
 				'types' => $this->types,
+				'status' => $this->status,
 				'updated_at' => $this->updated_at
 			);
+			return $data;
+		}
+		
+		public function getUpdateData()
+		{
+			$data = array();
+			if(isset($description))
+			{
+				$data['description'] = $this->description;
+			}
+			if(isset($showdate))
+			{
+				$data['showdate'] = $this->showdate;
+			}
+			if(isset($searchword))
+			{
+				$data['searchword'] = $this->searchword;
+			}
+			if(isset($covername))
+			{
+				$data['covername'] = $this->covername;
+			}
+			if(isset($coverurl))
+			{
+				$data['coverurl'] = $this->coverurl;
+			}
+			if(isset($coverdir))
+			{
+				$data['coverdir'] = $this->coverdir;
+			}
+			if(isset($types))
+			{
+				$data['types'] = $this->types;
+			}
+			if(isset($updated_at))
+			{
+				$data['updated_at'] = $this->updated_at;
+			}
+			if(isset($status))
+			{
+				$data['status'] = $this->status;
+			}
 			return $data;
 		}
 		
